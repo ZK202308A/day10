@@ -25,30 +25,18 @@ public class Server1 {
                 FileInputStream fin = new FileInputStream("aaa.jpg");
             ) {
 
-                String msg = "<h1>Hello World" + System.currentTimeMillis() + "</h1>";
                 out.write(new String("HTTP/1.1 200 OK\r\n").getBytes());
                 out.write(new String("Cache-Control: private\r\n").getBytes());
                 out.write(new String("Content-Type: image/jpg\r\n\r\n").getBytes());
 
-
                 byte[] buffer = new byte[1024 * 8]; //8kb
 
                 while(true){
-
                     int count = fin.read(buffer); //새로 몇 개나 채워졌나 5,5,3,-1
-
-                    System.out.println(count);
-
                     if(count == -1) break;
-
                     out.write(buffer,0, count); //새로 채운 만큼만 써라.
-
                 }//end while
-
                 //out.write(msg.getBytes(StandardCharsets.UTF_8));
-
-
-
             }catch(Exception e) {
                 e.printStackTrace();
                 continue;
